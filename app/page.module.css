@@ -1,0 +1,93 @@
+.main {
+  background: #0a0a0a;
+  min-height: 100vh;
+}
+
+.header {
+  background: #0a0a0a;
+  border-bottom: 1px solid #C9A84C25;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logoNombre {
+  font-family: var(--font-playfair);
+  font-size: 26px;
+  font-weight: 900;
+  color: #C9A84C;
+  letter-spacing: 2px;
+}
+
+.logoSub {
+  font-family: var(--font-barlow);
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: #555;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.carritoBtn {
+  background: #C9A84C;
+  color: #0a0a0a;
+  padding: 10px 20px;
+  font-family: var(--font-barlow);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero {
+  padding: 56px 24px 48px;
+  text-align: center;
+  border-bottom: 1px solid #C9A84C15;
+}
+
+.heroTag {
+  font-family: var(--font-barlow);
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: #C9A84C;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.heroTitulo {
+  font-family: var(--font-playfair);
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+
+.heroTituloAcento {
+  color: #C9A84C;
+  font-style: italic;
+}
+
+.heroSub {
+  font-family: var(--font-barlow);
+  font-size: 12px;
+  color: #555;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.catalogo {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}

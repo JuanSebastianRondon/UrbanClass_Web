@@ -1,0 +1,200 @@
+.main {
+  background: #0a0a0a;
+  min-height: 100vh;
+}
+
+.header {
+  background: #0a0a0a;
+  border-bottom: 1px solid #C9A84C25;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.volverBtn {
+  font-family: var(--font-barlow);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.volverBtn:hover {
+  color: #C9A84C;
+}
+
+.titulo {
+  font-family: var(--font-playfair);
+  font-size: 24px;
+  font-weight: 900;
+  color: #e8e8e8;
+}
+
+.contenido {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vacio {
+  font-family: var(--font-barlow);
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #444;
+  text-align: center;
+  padding: 80px 0;
+  text-transform: uppercase;
+}
+
+.item {
+  background: #0f0f0f;
+  border: 1px solid #1e1e1e;
+  padding: 14px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.itemImagen {
+  width: 64px;
+  height: 64px;
+  background: #151515;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.itemImagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.itemInfo {
+  flex: 1;
+}
+
+.itemNombre {
+  font-family: var(--font-playfair);
+  font-size: 15px;
+  font-weight: 700;
+  color: #e8e8e8;
+}
+
+.itemTalla {
+  font-family: var(--font-barlow);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #444;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.itemPrecio {
+  font-family: var(--font-barlow);
+  font-size: 14px;
+  font-weight: 700;
+  color: #C9A84C;
+  margin-top: 6px;
+}
+
+.cantidadControl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cantidadBtn {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  color: #777;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.cantidadBtn:hover {
+  border-color: #C9A84C;
+  color: #C9A84C;
+}
+
+.cantidadNum {
+  font-family: var(--font-barlow);
+  font-size: 16px;
+  font-weight: 600;
+  color: #e8e8e8;
+  min-width: 16px;
+  text-align: center;
+}
+
+.eliminarBtn {
+  background: transparent;
+  border: none;
+  color: #333;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.15s;
+  margin-left: 4px;
+}
+
+.eliminarBtn:hover {
+  color: #e24b4a;
+}
+
+.resumen {
+  background: #0f0f0f;
+  border: 1px solid #1e1e1e;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.resumenLabel {
+  font-family: var(--font-barlow);
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.resumenTotal {
+  font-family: var(--font-playfair);
+  font-size: 24px;
+  font-weight: 900;
+  color: #C9A84C;
+}
+
+.whatsappBtn {
+  background: #C9A84C;
+  color: #0a0a0a;
+  border: none;
+  padding: 16px;
+  font-family: var(--font-barlow);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.whatsappBtn:hover {
+  background: #b8922e;
+}
