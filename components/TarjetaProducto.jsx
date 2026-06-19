@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { urlFor } from "@/lib/sanity"
+import Image from "next/image"
 import styles from "./TarjetaProducto.module.css"
 
 export default function TarjetaProducto({ producto }) {
@@ -44,10 +45,12 @@ export default function TarjetaProducto({ producto }) {
     <div className={styles.card}>
       <div className={styles.imagen}>
         {imagenUrl && (
-          <img
+          <Image
             src={imagenUrl}
             alt={producto.nombre}
+            fill
             className={styles.imagenImg}
+            sizes="(max-width: 600px) 100vw, 400px"
           />
         )}
         {producto.badge && (
@@ -72,7 +75,7 @@ export default function TarjetaProducto({ producto }) {
                 {talla}
               </span>
               <span className={styles.tallaPrecio}>
-                ${precio.toLocaleString("es-CO")}
+                {precio ? `$${precio.toLocaleString("es-CO")}` : "Sin precio"}
               </span>
             </div>
           ))}
