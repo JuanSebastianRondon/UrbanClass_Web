@@ -1,3 +1,4 @@
+
 import { client, urlFor } from "@/lib/sanity"
 import TarjetaProducto from "@/components/TarjetaProducto"
 import styles from "./page.module.css"

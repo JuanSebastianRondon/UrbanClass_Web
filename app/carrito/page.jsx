@@ -1,16 +1,20 @@
 "use client"
 
-import { useState} from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import styles from "./page.module.css"
 
 export default function Carrito() {
+  const [carrito, setCarrito] = useState([])
+  const [montado, setMontado] = useState(false)
 
-  const [carrito, setCarrito] = useState(() =>{
-    if (typeof window === "undefined") return [] 
-      return JSON.parse(localStorage.getItem("carrito") || "[]")  
-  })
-  
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("carrito") || "[]")
+    setCarrito(data)
+    setMontado(true)
+  }, [])
+
   function cambiarCantidad(id, talla, cantidad) {
     const nuevo = carrito.map((item) =>
       item.id === id && item.talla === talla
@@ -44,10 +48,13 @@ export default function Carrito() {
 
   const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
 
+  if (!montado) return null
+
   return (
     <main className={styles.main}>
       <header className={styles.header}>
-        <Link href="/" className={styles.volverBtn}>← Volver</Link>        <h1 className={styles.titulo}>Tu carrito</h1>
+        <Link href="/" className={styles.volverBtn}>← Volver</Link>
+        <h1 className={styles.titulo}>Tu carrito</h1>
       </header>
 
       <div className={styles.contenido}>
@@ -58,10 +65,12 @@ export default function Carrito() {
             {carrito.map((item) => (
               <div key={`${item.id}-${item.talla}`} className={styles.item}>
                 <div className={styles.itemImagen}>
-                  <img
-                    src={item.imagen}
-                    alt={item.nombre}
-                    onError={(e) => e.target.style.display = "none"}
+                  <Image
+                    src={imagenUrl}
+                    alt={producto.nombre}
+                    fill
+                    className={styles.imagenImg}
+                    sizes="(max-width: 600px) 100vw, 400px"
                   />
                 </div>
 
