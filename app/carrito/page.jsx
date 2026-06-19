@@ -1,17 +1,16 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState} from "react"
 import Link from "next/link"
 import styles from "./page.module.css"
 
 export default function Carrito() {
-  const [carrito, setCarrito] = useState([])
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("carrito") || "[]")
-    if (data.length > 0) setCarrito(data)
-  }, [])
-
+  const [carrito, setCarrito] = useState(() =>{
+    if (typeof window === "undefined") return [] 
+      return JSON.parse(localStorage.getItem("carrito") || "[]")  
+  })
+  
   function cambiarCantidad(id, talla, cantidad) {
     const nuevo = carrito.map((item) =>
       item.id === id && item.talla === talla
@@ -39,7 +38,7 @@ export default function Carrito() {
       )
       .join("\n")
     const texto = `Hola, quiero hacer el siguiente pedido:\n\n${mensaje}\n\nTotal: $${total.toLocaleString("es-CO")}`
-    const numero = "573001234567"
+    const numero = process.env.NEXT_PUBLIC_WHATSAPP_NUMERO
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`, "_blank")
   }
 

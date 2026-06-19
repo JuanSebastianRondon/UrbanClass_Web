@@ -1,8 +1,9 @@
-import productos from "@/data/productos"
+import { client, urlFor } from "@/lib/sanity"
 import TarjetaProducto from "@/components/TarjetaProducto"
 import styles from "./page.module.css"
 import Link from "next/link"
-export default function Home() {
+export default async function Home() {
+  const productos = await client.fetch('*[_type == "producto"]')
   return (
     <main className={styles.main}>
       <header className={styles.header}>
@@ -26,7 +27,7 @@ export default function Home() {
 
       <section className={styles.catalogo}>
         {productos.map((producto) => (
-          <TarjetaProducto key={producto.id} producto={producto} />
+          <TarjetaProducto key={producto._id} producto={producto} />
         ))}
       </section>
     </main>

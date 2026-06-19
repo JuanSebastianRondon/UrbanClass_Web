@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { urlFor } from "@/lib/sanity"
 import styles from "./TarjetaProducto.module.css"
 
 export default function TarjetaProducto({ producto }) {
@@ -11,6 +12,8 @@ export default function TarjetaProducto({ producto }) {
     ? producto.tallas.find((t) => t.talla === tallaSeleccionada)?.precio
     : null
 
+  const imagenUrl = producto.imagen ? urlFor(producto.imagen).width(400).url() : null
+
   function agregarAlCarrito() {
     if (!tallaSeleccionada) {
       alert("Selecciona una talla")
@@ -18,17 +21,17 @@ export default function TarjetaProducto({ producto }) {
     }
     const carrito = JSON.parse(localStorage.getItem("carrito") || "[]")
     const itemExistente = carrito.find(
-      (item) => item.id === producto.id && item.talla === tallaSeleccionada
+      (item) => item.id === producto._id && item.talla === tallaSeleccionada
     )
     if (itemExistente) {
       itemExistente.cantidad += 1
     } else {
       carrito.push({
-        id: producto.id,
+        id: producto._id,
         nombre: producto.nombre,
         precio: precioSeleccionado,
         talla: tallaSeleccionada,
-        imagen: producto.imagen,
+        imagen: imagenUrl,
         cantidad: 1,
       })
     }
@@ -40,12 +43,13 @@ export default function TarjetaProducto({ producto }) {
   return (
     <div className={styles.card}>
       <div className={styles.imagen}>
-        <img
-          src={producto.imagen}
-          alt={producto.nombre}
-          className={styles.imagenImg}
-          onError={(e) => e.target.style.display = "none"}
-        />
+        {imagenUrl && (
+          <img
+            src={imagenUrl}
+            alt={producto.nombre}
+            className={styles.imagenImg}
+          />
+        )}
         {producto.badge && (
           <span className={styles.badge}>{producto.badge}</span>
         )}
