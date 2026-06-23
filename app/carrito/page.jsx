@@ -1,39 +1,33 @@
 "use client"
-
-import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+
+import { useCarrito, actualizarCarrito } from "@/lib/useCarrito"
 import styles from "./page.module.css"
 
+
 export default function Carrito() {
-  const [carrito, setCarrito] = useState([])
-  const [montado, setMontado] = useState(false)
+  const carrito = useCarrito()
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("carrito") || "[]")
-    setCarrito(data)
-    setMontado(true)
-  }, [])
-
-  function cambiarCantidad(id, talla, cantidad) {
-    const nuevo = carrito.map((item) =>
-      item.id === id && item.talla === talla
-        ? { ...item, cantidad: Math.max(1, cantidad) }
-        : item
-    )
-    setCarrito(nuevo)
-    localStorage.setItem("carrito", JSON.stringify(nuevo))
-  }
+ function cambiarCantidad(id, talla, cantidad) {
+  const item = carrito.find((i) => i.id === id && i.talla === talla)
+  if (cantidad > item.stock) return
+  const nuevo = carrito.map((i) =>
+    i.id === id && i.talla === talla
+      ? { ...i, cantidad: Math.max(1, cantidad) }
+      : i
+  )
+  actualizarCarrito(nuevo)
+}
 
   function eliminarItem(id, talla) {
     const nuevo = carrito.filter(
       (item) => !(item.id === id && item.talla === talla)
     )
-    setCarrito(nuevo)
-    localStorage.setItem("carrito", JSON.stringify(nuevo))
+    actualizarCarrito(nuevo)
   }
-
-  function hacerPedido() {
+  
+function hacerPedido() {
     if (carrito.length === 0) return
     const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
     const mensaje = carrito
@@ -46,9 +40,8 @@ export default function Carrito() {
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(texto)}`, "_blank")
   }
 
-  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
 
-  if (!montado) return null
+  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0)
 
   return (
     <main className={styles.main}>
@@ -57,21 +50,23 @@ export default function Carrito() {
         <h1 className={styles.titulo}>Tu carrito</h1>
       </header>
 
-      <div className={styles.contenido}>
+     <div className={styles.contenido}>
         {carrito.length === 0 ? (
           <p className={styles.vacio}>Tu carrito está vacío</p>
         ) : (
           <>
-            {carrito.map((item) => (
+             {carrito.map((item) => (
               <div key={`${item.id}-${item.talla}`} className={styles.item}>
                 <div className={styles.itemImagen}>
-                  <Image
-                    src={imagenUrl}
-                    alt={producto.nombre}
-                    fill
-                    className={styles.imagenImg}
-                    sizes="(max-width: 600px) 100vw, 400px"
-                  />
+                  {item.imagen && (
+                    <Image
+                      src={item.imagen}
+                      alt={item.nombre}
+                      fill
+                      className={styles.imagenImg}
+                      sizes="64px"
+                    />
+                  )}
                 </div>
 
                 <div className={styles.itemInfo}>

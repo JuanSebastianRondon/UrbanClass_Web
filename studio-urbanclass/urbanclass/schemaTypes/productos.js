@@ -50,8 +50,51 @@ export default {
           type: "object",
           name: "talla",
           fields: [
-            { name: "talla", title: "Talla", type: "string" },
-            { name: "precio", title: "Precio", type: "number" },
+            {
+              name: "talla",
+              title: "Talla",
+              type: "string",
+            },
+            {
+              name: "precio",
+              title: "Precio",
+              type: "number",
+              validation: (Rule) => Rule.required().min(0),
+              components: {
+                input: (props) => {
+                  return props.renderDefault({
+                    ...props,
+                    elementProps: {
+                      ...props.elementProps,
+                      min: 0,
+                      onKeyDown: (e) => {
+                        if (e.key === "ArrowDown" && props.value <= 0) e.preventDefault()
+                      },
+                    },
+                  })
+                },
+              },
+            },
+            {
+              name: "stock",
+              title: "Stock disponible",
+              type: "number",
+              validation: (Rule) => Rule.required().min(0).integer(),
+              components: {
+                input: (props) => {
+                  return props.renderDefault({
+                    ...props,
+                    elementProps: {
+                      ...props.elementProps,
+                      min: 0,
+                      onKeyDown: (e) => {
+                        if (e.key === "ArrowDown" && props.value <= 0) e.preventDefault()
+                      },
+                    },
+                  })
+                },
+              },
+            },
           ],
         },
       ],

@@ -124,3 +124,17 @@
   color: #4ade80;
   border: 1px solid #4ade8030;
 }
+
+.descripcion {
+  font-family: var(--font-barlow);
+  font-size: 11px;
+  color: #888;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.tallaAgotada {
+  opacity: 0.35;
+  cursor:not-allowed;
+  border-color: #1a1a1a;
+}
