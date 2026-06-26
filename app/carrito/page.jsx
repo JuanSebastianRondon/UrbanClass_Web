@@ -9,16 +9,7 @@ import styles from "./page.module.css"
 export default function Carrito() {
   const carrito = useCarrito()
 
- function cambiarCantidad(id, talla, cantidad) {
-  const item = carrito.find((i) => i.id === id && i.talla === talla)
-  if (cantidad > item.stock) return
-  const nuevo = carrito.map((i) =>
-    i.id === id && i.talla === talla
-      ? { ...i, cantidad: Math.max(1, cantidad) }
-      : i
-  )
-  actualizarCarrito(nuevo)
-}
+
 
   function eliminarItem(id, talla) {
     const nuevo = carrito.filter(
@@ -77,17 +68,7 @@ function hacerPedido() {
                   </p>
                 </div>
 
-                <div className={styles.cantidadControl}>
-                  <button
-                    className={styles.cantidadBtn}
-                    onClick={() => cambiarCantidad(item.id, item.talla, item.cantidad - 1)}
-                  >-</button>
-                  <span className={styles.cantidadNum}>{item.cantidad}</span>
-                  <button
-                    className={styles.cantidadBtn}
-                    onClick={() => cambiarCantidad(item.id, item.talla, item.cantidad + 1)}
-                  >+</button>
-                </div>
+                <span className={styles.itemCantidad}>x{item.cantidad}</span>
 
                 <button
                   className={styles.eliminarBtn}

@@ -96,6 +96,20 @@ export default {
               },
             },
           ],
+          preview: {
+            select: {
+              talla: "talla",
+              precio: "precio",
+              stock: "stock",
+            },
+            prepare({ talla, precio, stock }) {
+              return {
+                title: talla || "Talla no especificada",
+                subtitle: `Precio: $${precio.toLocaleString("es-CO")} | Stock: ${stock}`,
+                media: null,
+              }
+            }
+          },
         },
       ],
       validation: (Rule) => Rule.required().min(1),
