@@ -2,6 +2,7 @@
 import Link from "next/link"
 import Image from "next/image"
 
+//import BotonCarrito from "@/components/BotonCarrito"
 import { useCarrito, actualizarCarrito } from "@/lib/useCarrito"
 import styles from "./page.module.css"
 

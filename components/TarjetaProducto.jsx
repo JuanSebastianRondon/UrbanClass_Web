@@ -6,7 +6,7 @@ import Image from "next/image"
 import { actualizarCarrito } from "@/lib/useCarrito"
 import styles from "./TarjetaProducto.module.css"
 
-export default function TarjetaProducto({ producto }) {
+export default function TarjetaProducto({ producto, priority=false }) {
   const [tallaSeleccionada, setTallaSeleccionada] = useState(null)
   const [agregado, setAgregado] = useState(false)
 
@@ -64,6 +64,7 @@ export default function TarjetaProducto({ producto }) {
             fill
             className={styles.imagenImg}
             sizes="(max-width: 600px) 100vw, 400px"
+            priority={priority}
           />
         )}
         {producto.badge && (

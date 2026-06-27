@@ -1,8 +1,8 @@
 
-import { client, urlFor } from "@/lib/sanity"
-import TarjetaProducto from "@/components/TarjetaProducto"
+import { client } from "@/lib/sanity"
+import BotonCarrito from "@/components/BotonCarrito"
+import Catalogo from "@/components/Catalogo"
 import styles from "./page.module.css"
-import Link from "next/link"
 export default async function Home() {
   const productos = await client.fetch('*[_type == "producto"]')
   return (
@@ -12,9 +12,7 @@ export default async function Home() {
           <div className={styles.logoNombre}>Urban Class</div>
           <div className={styles.logoSub}>Prendas exclusivas</div>
         </div>
-        <Link href="/carrito" className={styles.carritoBtn}>
-          Ver carrito
-        </Link>
+        <BotonCarrito />
       </header>
 
       <div className={styles.hero}>
@@ -26,11 +24,7 @@ export default async function Home() {
         <p className={styles.heroSub}>Valledupar &mdash; Envios nacionales</p>
       </div>
 
-      <section className={styles.catalogo}>
-        {productos.map((producto) => (
-          <TarjetaProducto key={producto._id} producto={producto} />
-        ))}
-      </section>
+      <Catalogo productos={productos} />
     </main>
   )
 }

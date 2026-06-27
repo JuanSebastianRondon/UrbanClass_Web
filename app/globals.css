@@ -5,3 +5,7 @@ body {
   color: #fff;
   font-family: var(--font-barlow), sans-serif;
 }
+
+html{
+  overflow-x: hidden;
+}

@@ -32,20 +32,6 @@
   margin-top: 2px;
 }
 
-.carritoBtn {
-  background: #C9A84C;
-  color: #0a0a0a;
-  padding: 10px 20px;
-  font-family: var(--font-barlow);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 
 .hero {
   padding: 56px 24px 48px;
@@ -81,13 +67,4 @@
   color: #555;
   letter-spacing: 4px;
   text-transform: uppercase;
-}
-
-.catalogo {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 24px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 14px;
 }
